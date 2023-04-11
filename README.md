@@ -27,3 +27,17 @@ My small games developed in JavaScript
   transform: rotateY(0deg);
 }
 ```
+### Sample JavaScript code used in Memory4by4
+```javascript
+  let count = 0;
+  let gameScore = 0;
+
+  let [firstClick, secondClick] = [null, null];
+  let [firstEmoji, secondEmoji] = [null, null];
+
+  const emoji4_SetA = ["🐶", "😊", "🐼", "🤖", "👻", "🚀", "🦄", "🚩"];
+  const emoji4_SetB = ["🇱🇰", "🇫🇷", "🇨🇳", "🇳🇵", "🇰🇷", "🇺🇸", "🇧🇷", "🇵🇰"];
+
+  // Making emoji pair
+  const emojis = [...emoji4_SetB, ...emoji4_SetB];
+  ```
