@@ -1,6 +1,10 @@
 body {
   margin: 0;
   padding: 0;
+
+  /* prevent text selection */
+  -webkit-user-select: none; /* for Safari */
+  user-select: none;
 }
 
 .grid-container {
