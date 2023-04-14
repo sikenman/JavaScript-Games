@@ -1,10 +1,22 @@
 let globalTimer = null;
 
+function restartGame() {
+  location.reload(true);
+}
+
+(function () {
+  console.log("Game begins!!");
+  // disable right click
+  document.addEventListener("contextmenu", (event) => {
+    event.preventDefault();
+  });
+})();
+
 (function () {
   /* 
   This is the memory game code to play 4 x 4 game
   @Author: Siken Man Dongol
-  @Date: April 11-12, 2023
+  @Date: April 11-13, 2023
   */
 
   let count = 0;
@@ -16,7 +28,7 @@ let globalTimer = null;
 
   const gridItems = document.querySelectorAll(".grid-item");
 
-  const emoji4_SetA = ["🐶", "😎", "🐼", "🤖", "👻", "🚀", "🦄", "🚩"];
+  const emoji4_SetA = ["🐶", "😎", "🐼", "🤖", "👻", "🚀", "🦄", "🌍"];
   const emoji4_SetB = ["🇱🇰", "🇫🇷", "🇨🇳", "🇳🇵", "🇰🇷", "🇺🇸", "🇧🇷", "🇵🇰"];
   const emoji4_SetC = ["😀", "😂", "😍", "😎", "🤔", "🤫", "🤯", "🥺"];
 
@@ -25,15 +37,15 @@ let globalTimer = null;
 
   //Shuffle the emoji array
   const pairs = emojis.sort((a, b) => 0.5 - Math.random());
-  console.log(pairs);
+  //console.log(pairs);
 
   gridItems.forEach((item) => {
     item.addEventListener("click", handleClick);
   });
 
   function handleClick(e) {
-    // display games moves (2 clicks = 1 move)
     gameMoves++;
+    // display games moves (2 clicks = 1 move)
     if (gameMoves % 2 == 0) {
       document.getElementById("moves").innerHTML = Number(gameMoves / 2);
     }
@@ -65,11 +77,16 @@ let globalTimer = null;
         secondClick = null;
         count = 0;
 
-        // GAME OVER
+        /* GAME OVER */
         if (gameScore == emojis.length / 2) {
-          window.alert("You won the Game!!");
+          // display the Restart Game div block
+          document.getElementById("restart-block").style.display = "block";
+          document.getElementById("status-block").style.display = "none";
+
           // stop the timer
           clearInterval(globalTimer);
+
+          window.alert("You won the Game!!");
         }
       } else {
         setTimeout(() => {
@@ -91,7 +108,7 @@ let globalTimer = null;
 // Timer block of the JavaScript
 (function () {
   /* 
-    This JS handles displaying timer on the screen in 00:00 (mm:ss) format
+    This JS handles displaying timer on the screen in 0:00 (m:ss) format
     @Author: Siken Man Dongol
     @Date: April 12, 2023
 */
@@ -104,7 +121,7 @@ let globalTimer = null;
       minutes++;
       seconds = 0;
     }
-    let mm = `${String(minutes).padStart(2, "0")}`;
+    let mm = `${String(minutes).padStart(1, "0")}`;
     let ss = `${String(seconds).padStart(2, "0")}`;
     document.getElementById("timer").innerHTML = `${mm}:${ss}`;
   }, 1000);
