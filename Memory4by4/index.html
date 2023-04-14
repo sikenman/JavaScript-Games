@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Memory Game</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    
+    <title>🌍 Memory 4 × 4 Game</title>
 
 </head>
 
@@ -31,14 +32,29 @@
         <div class="grid-item" data-id="15"></div>
     </div>
 
+    <!-- Game Status Section - Begins -->
     <div class="status">
         <div id="status-block">
             Matched: <span id="match">0</span> Moves: <span id="moves">0</span> Time: <span id="timer">0:00</span>
         </div>
         <div id="restart-block">
-            <button class="anim-bg-gradient" onclick="restartGame()">Restart Game</button>
+            <button class="anim-bg-gradient" onclick="restartGame();">Restart Game</button>
         </div>
     </div>
+    <!-- Game Status Section - Ends -->
+
+    <!-- Game Over modal dialog box - Begins -->
+    <div id="popup-dlg" class="overlay">
+        <div class="popup">
+            <h2>Game Over</h2>
+            <a class="close" href="#" onclick="closeDialog();">&times;</a>
+            <div class="content">
+                <p>🎉 Congratulations! You won the Game.</p>
+            </div>
+        </div>
+    </div>
+    <!-- Game Over modal dialog box - Ends -->
+
     <script src="script.js" type="text/javascript"></script>
 
 </body>

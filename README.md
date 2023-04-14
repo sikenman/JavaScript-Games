@@ -8,6 +8,7 @@ My small games developed in JavaScript
     - CSS animation while clicking on the card.
     - Selection of text is disabled (via CSS).
     - Context menu on right click disabled (via JavaScript).
+    - Game over modal dialog box is shown when user completes the game.
 
 ### Example CSS code used in Memory4by4
 ```css

@@ -4,6 +4,10 @@ function restartGame() {
   location.reload(true);
 }
 
+function closeDialog() {
+  document.getElementById("popup-dlg").remove("showme");
+}
+
 (function () {
   console.log("Game begins!!");
   // disable right click
@@ -35,7 +39,7 @@ function restartGame() {
   // Making emoji pair
   const emojis = [...emoji4_SetA, ...emoji4_SetA];
 
-  //Shuffle the emoji array
+  //Shuffle the emoji array (this shuffle code need improvements)
   const pairs = emojis.sort((a, b) => 0.5 - Math.random());
   //console.log(pairs);
 
@@ -86,7 +90,8 @@ function restartGame() {
           // stop the timer
           clearInterval(globalTimer);
 
-          window.alert("You won the Game!!");
+          // show You Won Dialog
+          document.getElementById("popup-dlg").classList.add("showme");
         }
       } else {
         setTimeout(() => {
