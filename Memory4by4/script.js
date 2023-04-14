@@ -1,24 +1,27 @@
+let globalTimer = null;
+
 (function () {
   /* 
-    This is the memory game code to play 4 x 4 game
-    @Author: Siken Man Dongol
-    @Date: April 11, 2023
-    */
+  This is the memory game code to play 4 x 4 game
+  @Author: Siken Man Dongol
+  @Date: April 11-12, 2023
+  */
 
   let count = 0;
   let gameScore = 0;
+  let gameMoves = 0;
 
   let [firstClick, secondClick] = [null, null];
   let [firstEmoji, secondEmoji] = [null, null];
 
   const gridItems = document.querySelectorAll(".grid-item");
 
-  const emoji4_SetA = ["🐶", "😊", "🐼", "🤖", "👻", "🚀", "🦄", "🚩"];
+  const emoji4_SetA = ["🐶", "😎", "🐼", "🤖", "👻", "🚀", "🦄", "🚩"];
   const emoji4_SetB = ["🇱🇰", "🇫🇷", "🇨🇳", "🇳🇵", "🇰🇷", "🇺🇸", "🇧🇷", "🇵🇰"];
+  const emoji4_SetC = ["😀", "😂", "😍", "😎", "🤔", "🤫", "🤯", "🥺"];
 
   // Making emoji pair
-  //const emojis = [...emoji4_SetA, ...emoji4_SetA];
-  const emojis = [...emoji4_SetB, ...emoji4_SetB];
+  const emojis = [...emoji4_SetA, ...emoji4_SetA];
 
   //Shuffle the emoji array
   const pairs = emojis.sort((a, b) => 0.5 - Math.random());
@@ -29,6 +32,12 @@
   });
 
   function handleClick(e) {
+    // display games moves (2 clicks = 1 move)
+    gameMoves++;
+    if (gameMoves % 2 == 0) {
+      document.getElementById("moves").innerHTML = Number(gameMoves / 2);
+    }
+
     if (count === 0) {
       firstEmoji = pairs[this.dataset.id];
       e.target.textContent = firstEmoji;
@@ -45,7 +54,7 @@
 
       if (firstEmoji === secondEmoji) {
         gameScore++;
-        document.getElementById("score").innerHTML = gameScore;
+        document.getElementById("match").innerHTML = gameScore;
 
         firstClick.classList.add("matched");
         secondClick.classList.add("matched");
@@ -55,10 +64,12 @@
         firstClick = null;
         secondClick = null;
         count = 0;
-        
+
         // GAME OVER
         if (gameScore == emojis.length / 2) {
           window.alert("You won the Game!!");
+          // stop the timer
+          clearInterval(globalTimer);
         }
       } else {
         setTimeout(() => {
@@ -70,9 +81,31 @@
           firstClick = null;
           secondClick = null;
           count = 0;
-        }, 700);
+        }, 800);
         count++;
       }
     }
   }
+})();
+
+// Timer block of the JavaScript
+(function () {
+  /* 
+    This JS handles displaying timer on the screen in 00:00 (mm:ss) format
+    @Author: Siken Man Dongol
+    @Date: April 12, 2023
+*/
+  let seconds = 0;
+  let minutes = 0;
+
+  globalTimer = setInterval(() => {
+    seconds++;
+    if (seconds === 60) {
+      minutes++;
+      seconds = 0;
+    }
+    let mm = `${String(minutes).padStart(2, "0")}`;
+    let ss = `${String(seconds).padStart(2, "0")}`;
+    document.getElementById("timer").innerHTML = `${mm}:${ss}`;
+  }, 1000);
 })();

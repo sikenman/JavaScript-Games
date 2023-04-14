@@ -35,8 +35,8 @@ My small games developed in JavaScript
   let [firstClick, secondClick] = [null, null];
   let [firstEmoji, secondEmoji] = [null, null];
 
-  const emoji4_SetA = ["🐶", "😊", "🐼", "🤖", "👻", "🚀", "🦄", "🚩"];
-  const emoji4_SetB = ["🇱🇰", "🇫🇷", "🇨🇳", "🇳🇵", "🇰🇷", "🇺🇸", "🇧🇷", "🇵🇰"];
+  const emoji4_SetA = ["🐶", "😎", "🐼", "🤖", "👻", "🚀", "🦄", "🚩"];
+  const emoji4_SetB = ["😀", "😂", "😍", "😎", "🤔", "🤫", "🤯", "🥺"];
 
   // Making emoji pair
   const emojis = [...emoji4_SetB, ...emoji4_SetB];
