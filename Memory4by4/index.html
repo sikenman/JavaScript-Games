@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css">
 
-    <title>🌍 Memory 4 × 4 Game</title>
+    <title>🌍 Memory 5 × 4 Game</title>
 
     <script type="text/javascript">
         function restartGame() {
@@ -16,13 +16,16 @@
 
         function closeDialog() {
             document.getElementById("popup-dlg").remove("showme");
+            // display the [Restart] game block
+            document.getElementById("restart-block").style.display = "block";
+            document.getElementById("status-block").style.display = "none";
         }
     </script>
 
 </head>
 
 <body>
-    <h1>Memory 4 × 4 Game</h1>
+    <h1>Memory 5 × 4 Game</h1>
     <div class="grid-container">
         <div class="grid-item" data-id="0"></div>
         <div class="grid-item" data-id="1"></div>
@@ -40,6 +43,10 @@
         <div class="grid-item" data-id="13"></div>
         <div class="grid-item" data-id="14"></div>
         <div class="grid-item" data-id="15"></div>
+        <div class="grid-item" data-id="16"></div>
+        <div class="grid-item" data-id="17"></div>
+        <div class="grid-item" data-id="18"></div>
+        <div class="grid-item" data-id="19"></div>
     </div>
 
     <!-- Game Status Section - Begins -->

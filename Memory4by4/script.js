@@ -1,20 +1,30 @@
-import {shuffleArray} from "./lib.js";
+import { shuffleArray } from "./lib.js";
 
 let globalTimer = null;
+let showAnimation = false;
 
 (function () {
   console.log("Game begins!!");
+
   // disable right click
   document.addEventListener("contextmenu", (event) => {
     event.preventDefault();
   });
+
+  // show animation during card click
+  if (showAnimation === true) {
+    const gridItems = document.querySelectorAll(".grid-item");
+    gridItems.forEach((item) => {
+      item.classList.add("show-animation");
+    });
+  }
 })();
 
 (function () {
   /* 
-  This is the memory game code to play 4 x 4 game
+  This is the memory game code to play 5 x 4 game
   @Author : Siken Man Dongol
-  @Date   : April 11-13, 2023
+  @Date   : April 11-15, 2023
   */
 
   let count = 0;
@@ -25,17 +35,17 @@ let globalTimer = null;
   let [firstEmoji, secondEmoji] = [null, null];
 
   const gridItems = document.querySelectorAll(".grid-item");
-  
-  const emoji4a = ["🐶", "😎", "🐼", "🤖", "👻", "🚀", "🦄", "🌍"];
-  const emoji4b = ["🇱🇰", "🇫🇷", "🇨🇳", "🇳🇵", "🇰🇷", "🇺🇸", "🇧🇷", "🇵🇰"];
-  const emoji4c = ["😀", "😂", "😍", "😎", "🤔", "🤫", "🤯", "🥺"];
-  
-  // Making emoji pair
-  const emojis = [...emoji4b, ...emoji4b];
-  
-  // Shuffle the emoji array twice with Fisher–Yates Shuffle algo.
+
+  const emoji4a = ["🐶", "😎", "🐼", "🤖", "👻", "🚀", "🦄", "🌍", "❤️", "🐢"];
+  const emoji4b = ["🇱🇰", "🇫🇷", "🇨🇳", "🇳🇵", "🇰🇷", "🇺🇸", "🇧🇷", "🇵🇰", "🇮🇳", "🇵🇹"];
+  const emoji4c = ["😀", "😥", "😍", "😎", "🤔", "🥶", "🤯", "🥺", "🤑", "😡"];
+
+  // making emoji pair
+  const emojis = [...emoji4a, ...emoji4a];
+
+  // shuffle the emoji array twice with Fisher–Yates algorithm
   const pair1 = shuffleArray(emojis);
-  const pairs= shuffleArray(pair1);
+  const pairs = shuffleArray(pair1);
   console.log(pairs);
 
   gridItems.forEach((item) => {
@@ -78,14 +88,10 @@ let globalTimer = null;
 
         /* GAME OVER */
         if (gameScore == emojis.length / 2) {
-          // display the Restart Game div block
-          document.getElementById("restart-block").style.display = "block";
-          document.getElementById("status-block").style.display = "none";
-
           // stop the timer
           clearInterval(globalTimer);
 
-          // show You Won Dialog
+          // show [You Won] modal dialog
           document.getElementById("popup-dlg").classList.add("showme");
         }
       } else {
@@ -108,9 +114,10 @@ let globalTimer = null;
 // Timer block of the JavaScript
 (function () {
   /* 
-    This JS handles displaying timer on the screen in 0:00 (m:ss) format
-    @Author: Siken Man Dongol
-    @Date: April 12, 2023
+    This JS block handles displaying timer on the screen in 0:00 (m:ss) format
+    this timer is called after every 1 second.
+    @Author : Siken Man Dongol
+    @Date   : April 12, 2023
 */
   let seconds = 0;
   let minutes = 0;
