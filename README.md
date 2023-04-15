@@ -9,15 +9,28 @@ My small games developed in JavaScript
     - Selection of text is disabled (via CSS).
     - Context menu on right click disabled (via JavaScript).
     - Game over modal dialog box is shown when user completes the game.
+    - Implemented Fisher–Yates Shuffle algo.
+      - [Fisher–Yates Shuffle](https://bost.ocks.org/mike/shuffle/)
+    - Make use of export and import modules with two JS files.
 
 ### Example CSS code used in Memory4by4
 ```css
 .grid-item {
+  background-color: #ddd;
+  border: 2px solid #d9d9d9;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 5rem;
+  height: calc(100vh / 5.1);
+  min-height: 8rem;
+  transition: transform 0.8s ease;
+
+  /* centering section */
   display: flex;
+  text-align: center;
   justify-content: center;
   align-items: center;
-  height: calc(100vh / 5.1);
-  transition: transform 0.8s ease;
+  /* centering section ends */
 }
 
 .grid-item.clicked {
@@ -38,9 +51,9 @@ My small games developed in JavaScript
   let [firstClick, secondClick] = [null, null];
   let [firstEmoji, secondEmoji] = [null, null];
 
-  const emoji4_SetA = ["🐶", "😎", "🐼", "🤖", "👻", "🚀", "🦄", "🌍"];
-  const emoji4_SetB = ["🇱🇰", "🇫🇷", "🇨🇳", "🇳🇵", "🇰🇷", "🇺🇸", "🇧🇷", "🇵🇰"];
+  const emoji4a = ["🐶", "😎", "🐼", "🤖", "👻", "🚀", "🦄", "🌍"];
+  const emoji4b = ["🇱🇰", "🇫🇷", "🇨🇳", "🇳🇵", "🇰🇷", "🇺🇸", "🇧🇷", "🇵🇰"];
 
   // Making emoji pair
-  const emojis = [...emoji4_SetA, ...emoji4_SetA];
+  const emojis = [...emoji4a, ...emoji4a];
   ```

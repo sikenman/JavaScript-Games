@@ -1,12 +1,6 @@
+import {shuffleArray} from "./lib.js";
+
 let globalTimer = null;
-
-function restartGame() {
-  location.reload(true);
-}
-
-function closeDialog() {
-  document.getElementById("popup-dlg").remove("showme");
-}
 
 (function () {
   console.log("Game begins!!");
@@ -19,8 +13,8 @@ function closeDialog() {
 (function () {
   /* 
   This is the memory game code to play 4 x 4 game
-  @Author: Siken Man Dongol
-  @Date: April 11-13, 2023
+  @Author : Siken Man Dongol
+  @Date   : April 11-13, 2023
   */
 
   let count = 0;
@@ -31,17 +25,18 @@ function closeDialog() {
   let [firstEmoji, secondEmoji] = [null, null];
 
   const gridItems = document.querySelectorAll(".grid-item");
-
-  const emoji4_SetA = ["🐶", "😎", "🐼", "🤖", "👻", "🚀", "🦄", "🌍"];
-  const emoji4_SetB = ["🇱🇰", "🇫🇷", "🇨🇳", "🇳🇵", "🇰🇷", "🇺🇸", "🇧🇷", "🇵🇰"];
-  const emoji4_SetC = ["😀", "😂", "😍", "😎", "🤔", "🤫", "🤯", "🥺"];
-
+  
+  const emoji4a = ["🐶", "😎", "🐼", "🤖", "👻", "🚀", "🦄", "🌍"];
+  const emoji4b = ["🇱🇰", "🇫🇷", "🇨🇳", "🇳🇵", "🇰🇷", "🇺🇸", "🇧🇷", "🇵🇰"];
+  const emoji4c = ["😀", "😂", "😍", "😎", "🤔", "🤫", "🤯", "🥺"];
+  
   // Making emoji pair
-  const emojis = [...emoji4_SetA, ...emoji4_SetA];
-
-  //Shuffle the emoji array (this shuffle code need improvements)
-  const pairs = emojis.sort((a, b) => 0.5 - Math.random());
-  //console.log(pairs);
+  const emojis = [...emoji4b, ...emoji4b];
+  
+  // Shuffle the emoji array twice with Fisher–Yates Shuffle algo.
+  const pair1 = shuffleArray(emojis);
+  const pairs= shuffleArray(pair1);
+  console.log(pairs);
 
   gridItems.forEach((item) => {
     item.addEventListener("click", handleClick);
