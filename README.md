@@ -1,20 +1,40 @@
 # JavaScript-Games
-My small games developed in JavaScript
+My small games developed in JavaScript utilizing ECMAScript features
 ----
 ## Projects
-- Memory4by4
-    - Classic memory game of 4 × 4 size.
+- MemoryGame
+    - Classic memory game of 5 × 4 size.
     - Use of various emojis for the pictures.
-    - CSS animation while clicking on the card
+    - Selection of text is disabled (via CSS).
+    - CSS animation while clicking on the card.
+      - CSS animation toggle based on [showAnimation] boolean variable.
+    - Context menu on right click disabled (via JavaScript).
+    - Responsive grid design that adjusts to different screen sizes.
+    - Game over modal dialog box is shown when user completes the game.
+    - Implemented (Immediately Invoked Function Expressions).
+    - Used Fisher–Yates shuffling algorithm.
+      - [Fisher–Yates Shuffle](https://bost.ocks.org/mike/shuffle/)
+    - Make use of export and import modules with two JS files.
+    - Random set of emojis are selected at runtime.
 
-### Example CSS code used in Memory4by4
+### Example CSS code used in MemoryGame
 ```css
 .grid-item {
+  background-color: #ddd;
+  border: 2px solid #d9d9d9;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 5rem;
+  height: calc(100vh / 5.1);
+  min-height: 8rem;
+  transition: transform 0.8s ease;
+
+  /* centering section */
   display: flex;
+  text-align: center;
   justify-content: center;
   align-items: center;
-  height: calc(100vh / 5.3);
-  transition: transform 1s ease;
+  /* centering section ends */
 }
 
 .grid-item.clicked {
@@ -27,17 +47,17 @@ My small games developed in JavaScript
   transform: rotateY(0deg);
 }
 ```
-### Sample JavaScript code used in Memory4by4
+### Sample JavaScript code used in MemoryGame
 ```javascript
-  let count = 0;
-  let gameScore = 0;
+  const emoji4x5a = ["🐶", "😎", "🐼", "🍁", "🤖", "👻", "🚀", "🦄", "🌍", "❤️"];
+  const emoji4x5b = ["🇱🇰", "🇫🇷", "🇨🇳", "🇳🇵", "🇰🇷", "🇺🇸", "🇧🇷", "🇵🇰", "🇮🇳", "🇵🇹"];
+  const emoji4x5c = ["😀", "😥", "😍", "😎", "🤔", "🥶", "🤯", "🥺", "🤑", "😡"];
 
-  let [firstClick, secondClick] = [null, null];
-  let [firstEmoji, secondEmoji] = [null, null];
+  // making emoji pair
+  const emojis = [...emoji4x5a, ...emoji4x5a];
 
-  const emoji4_SetA = ["🐶", "😎", "🐼", "🤖", "👻", "🚀", "🦄", "🚩"];
-  const emoji4_SetB = ["😀", "😂", "😍", "😎", "🤔", "🤫", "🤯", "🥺"];
+  // shuffle the emoji array
+  const pair = shuffleArray(emojis);
 
-  // Making emoji pair
-  const emojis = [...emoji4_SetB, ...emoji4_SetB];
+  return pairs;
   ```

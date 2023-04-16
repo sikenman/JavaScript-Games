@@ -5,13 +5,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Memory Game</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+
+    <title>🌍 Memory 5 × 4 Game</title>
+
+    <script type="text/javascript">
+        function restartGame() {
+            location.reload(true);
+        }
+
+        function closeDialog() {
+            document.getElementById("popup-dlg").remove("showme");
+            // show the [Restart] game block & hide [Status] block
+            document.getElementById("status-block").style.display = "none";
+            document.getElementById("restart-block").style.display = "block";
+        }
+    </script>
 
 </head>
 
 <body>
-    <h1>Memory 4 × 4 Game</h1>
+    <h1>Memory 5 × 4 Game</h1>
     <div class="grid-container">
         <div class="grid-item" data-id="0"></div>
         <div class="grid-item" data-id="1"></div>
@@ -29,15 +43,36 @@
         <div class="grid-item" data-id="13"></div>
         <div class="grid-item" data-id="14"></div>
         <div class="grid-item" data-id="15"></div>
+        <div class="grid-item" data-id="16"></div>
+        <div class="grid-item" data-id="17"></div>
+        <div class="grid-item" data-id="18"></div>
+        <div class="grid-item" data-id="19"></div>
     </div>
 
+    <!-- Game Status Section » begins -->
     <div class="status">
-        <div>
-            Matched: <span id="match">0</span> Moves: <span id="moves">0</span> Time: <span id="timer">00:00</span>
+        <div id="status-block">
+            Matched: <span id="match">0</span> Moves: <span id="moves">0</span> Time: <span id="timer">0:00</span>
+        </div>
+        <div id="restart-block">
+            <button class="anim-bg-gradient" onclick="restartGame();">Restart Game</button>
         </div>
     </div>
-    <script src="script.js" type="text/javascript"></script>
+    <!-- Game Status Section » ends -->
 
+    <!-- Game Over modal dialog box » begins -->
+    <div id="popup-dlg" class="overlay">
+        <div class="popup">
+            <h2>Game Over</h2>
+            <a class="close" href="#" onclick="closeDialog();">&times;</a>
+            <div class="content">
+                <p>🎉 Congratulations! You won the Game.</p>
+            </div>
+        </div>
+    </div>
+    <!-- Game Over modal dialog box » ends -->
+
+    <script type="module" src="script.js"></script>
 </body>
 
 </html>

@@ -1,21 +1,56 @@
+:root {
+  --card-color: lightseagreen;
+  --status-text-color1: rgb(22, 154, 147);
+  --shadow-color: #999;
+}
+
 body {
   margin: 0;
   padding: 0;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 
   /* prevent text selection */
   -webkit-user-select: none; /* for Safari */
   user-select: none;
 }
 
+h1 {
+  color: black;
+  font-size: 3.8rem;
+  line-height: 4rem;
+  text-align: center;
+  text-shadow: 3px 3px 6px var(--shadow-color);
+}
+
 .grid-container {
   margin-top: 0;
-  margin-left: 12%;
-  margin-right: 12%;
+  margin-left: 24%;
+  margin-right: 24%;
 
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
   gap: 0.5rem;
+}
+
+@media screen and (max-width: 1600px) {
+  .grid-container {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .grid-container {
+    margin-left: 4%;
+    margin-right: 4%;
+  }
+  h1 {
+    color: black;
+    font-size: 3rem;
+    line-height: 3.4rem;
+  }
 }
 
 .grid-item {
@@ -24,48 +59,146 @@ body {
   border-radius: 12px;
   cursor: pointer;
   font-size: 5rem;
-  text-align: center;
+  height: calc(100vh / 6.3); /* need to adjust for 4 x 4 game */
+  min-height: 8rem;
+  min-width: 8rem;
+
+  /* show emoji at the center */
   display: flex;
-  justify-content: center;
+  text-align: center;
   align-items: center;
-  height: calc(100vh / 5.1);
-  transition: transform 1s ease;
+  justify-content: center;
+}
+
+/* Card flip animation */
+.grid-item.show-animation {
+  transition: transform 0.5s ease;
 }
 
 .grid-item.clicked {
-  background-color: lightseagreen;
+  background-color: var(--card-color);
+}
+.grid-item.clicked.show-animation {
   transform: rotateY(180deg);
 }
 
 .grid-item.matched {
-  border: 2px solid rgb(22, 154, 147);
+  border: 2px solid var(--status-text-color1);
+}
+.grid-item.matched.show-animation {
   transform: rotateY(0deg);
 }
 
-h1,
 div.status {
-  font-size: 4.2rem;
-  line-height: 4.4rem;
-  text-align: center;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   color: black;
-  text-shadow: 3px 3px 6px #999;
-}
-
-div.status {
-  padding: 1rem;
+  padding: 0.5rem;
   font-size: 2rem;
   line-height: 2.2rem;
-  text-shadow: 2px 2px 4px #999;
+  text-align: center;
+  text-shadow: 2px 2px 4px var(--shadow-color);
+}
+
+#status-block {
+  padding: 0.5rem;
 }
 
 #match,
-#moves,
-#timer {
-  color: rgb(22, 154, 147);
+#moves {
+  color: var(--status-text-color1);
 }
 
 #timer {
   color: goldenrod;
+}
+
+#status-block {
+  display: block;
+}
+
+#restart-block {
+  display: none;
+}
+
+/* Reload Buttons */
+button {
+  font-size: 1.4rem;
+}
+.anim-bg-gradient {
+  width: 16rem;
+  height: 4rem;
+  padding: 0.4rem;
+  border-radius: 0.6em;
+  cursor: pointer;
+  color: gold;
+  background: linear-gradient(120deg, darkmagenta, crimson, orange);
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  transition: background-position 0.6s;
+}
+
+.anim-bg-gradient:hover {
+  background-position: 0 0;
+}
+
+/* Pop-up dialog box */
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay.showme {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 40vh auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 1.8rem;
+  width: 30%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  color: var(--status-text-color1);
+  font-size: 2rem;
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 300ms;
+  font-size: 2.2rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup .close:hover {
+  color: var(--card-color);
+}
+.popup .content {
+  font-size: 1.6rem;
+  line-height: 2.2rem;
+  max-height: 30%;
+  text-align: center;
+  overflow: auto;
+}
+
+@media screen and (max-width: 700px) {
+  .box {
+    width: 70%;
+  }
+  .popup {
+    width: 70%;
+  }
 }
