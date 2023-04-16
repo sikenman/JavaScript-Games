@@ -16,9 +16,9 @@
 
         function closeDialog() {
             document.getElementById("popup-dlg").remove("showme");
-            // display the [Restart] game block
-            document.getElementById("restart-block").style.display = "block";
+            // show the [Restart] game block & hide [Status] block
             document.getElementById("status-block").style.display = "none";
+            document.getElementById("restart-block").style.display = "block";
         }
     </script>
 
@@ -49,7 +49,7 @@
         <div class="grid-item" data-id="19"></div>
     </div>
 
-    <!-- Game Status Section - Begins -->
+    <!-- Game Status Section » begins -->
     <div class="status">
         <div id="status-block">
             Matched: <span id="match">0</span> Moves: <span id="moves">0</span> Time: <span id="timer">0:00</span>
@@ -58,9 +58,9 @@
             <button class="anim-bg-gradient" onclick="restartGame();">Restart Game</button>
         </div>
     </div>
-    <!-- Game Status Section - Ends -->
+    <!-- Game Status Section » ends -->
 
-    <!-- Game Over modal dialog box - Begins -->
+    <!-- Game Over modal dialog box » begins -->
     <div id="popup-dlg" class="overlay">
         <div class="popup">
             <h2>Game Over</h2>
@@ -70,7 +70,7 @@
             </div>
         </div>
     </div>
-    <!-- Game Over modal dialog box - Ends -->
+    <!-- Game Over modal dialog box » ends -->
 
     <script type="module" src="script.js"></script>
 </body>

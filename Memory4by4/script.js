@@ -1,4 +1,4 @@
-import { shuffleArray } from "./lib.js";
+import { getEmojis } from "./lib.js";
 
 let globalTimer = null;
 let showAnimation = false;
@@ -23,31 +23,21 @@ let showAnimation = false;
 (function () {
   /* 
   This is the memory game code to play 5 x 4 game
-  @Author : Siken Man Dongol
-  @Date   : April 11-15, 2023
+  @Author: Siken Man Dongol
+  @Date  : April 11-16, 2023
   */
 
   let count = 0;
   let gameScore = 0;
   let gameMoves = 0;
 
+  const pairs = getEmojis();
+  console.log(pairs);
+
   let [firstClick, secondClick] = [null, null];
   let [firstEmoji, secondEmoji] = [null, null];
 
   const gridItems = document.querySelectorAll(".grid-item");
-
-  const emoji4a = ["🐶", "😎", "🐼", "🤖", "👻", "🚀", "🦄", "🌍", "❤️", "🐢"];
-  const emoji4b = ["🇱🇰", "🇫🇷", "🇨🇳", "🇳🇵", "🇰🇷", "🇺🇸", "🇧🇷", "🇵🇰", "🇮🇳", "🇵🇹"];
-  const emoji4c = ["😀", "😥", "😍", "😎", "🤔", "🥶", "🤯", "🥺", "🤑", "😡"];
-
-  // making emoji pair
-  const emojis = [...emoji4a, ...emoji4a];
-
-  // shuffle the emoji array twice with Fisher–Yates algorithm
-  const pair1 = shuffleArray(emojis);
-  const pairs = shuffleArray(pair1);
-  console.log(pairs);
-
   gridItems.forEach((item) => {
     item.addEventListener("click", handleClick);
   });
@@ -87,7 +77,7 @@ let showAnimation = false;
         count = 0;
 
         /* GAME OVER */
-        if (gameScore == emojis.length / 2) {
+        if (gameScore == pairs.length / 2) {
           // stop the timer
           clearInterval(globalTimer);
 
@@ -116,8 +106,8 @@ let showAnimation = false;
   /* 
     This JS block handles displaying timer on the screen in 0:00 (m:ss) format
     this timer is called after every 1 second.
-    @Author : Siken Man Dongol
-    @Date   : April 12, 2023
+    @Author: Siken Man Dongol
+    @Date  : April 12, 2023
 */
   let seconds = 0;
   let minutes = 0;

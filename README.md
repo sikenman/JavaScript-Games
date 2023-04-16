@@ -15,8 +15,9 @@ My small games developed in JavaScript utilizing ECMAScript features
     - Used Fisher–Yates shuffling algorithm.
       - [Fisher–Yates Shuffle](https://bost.ocks.org/mike/shuffle/)
     - Make use of export and import modules with two JS files.
+    - Random set of emojis are selected at runtime.
 
-### Example CSS code used in Memory4by4
+### Example CSS code used in MemoryGame
 ```css
 .grid-item {
   background-color: #ddd;
@@ -46,21 +47,17 @@ My small games developed in JavaScript utilizing ECMAScript features
   transform: rotateY(0deg);
 }
 ```
-### Sample JavaScript code used in Memory4by4
+### Sample JavaScript code used in MemoryGame
 ```javascript
-  let count = 0;
-  let gameScore = 0;
+  const emoji4x5a = ["🐶", "😎", "🐼", "🍁", "🤖", "👻", "🚀", "🦄", "🌍", "❤️"];
+  const emoji4x5b = ["🇱🇰", "🇫🇷", "🇨🇳", "🇳🇵", "🇰🇷", "🇺🇸", "🇧🇷", "🇵🇰", "🇮🇳", "🇵🇹"];
+  const emoji4x5c = ["😀", "😥", "😍", "😎", "🤔", "🥶", "🤯", "🥺", "🤑", "😡"];
 
-  const gridItems = document.querySelectorAll(".grid-item");
+  // making emoji pair
+  const emojis = [...emoji4x5a, ...emoji4x5a];
 
-  const emoji4a = ["🐶", "😎", "🐼", "🤖", "👻", "🚀", "🦄", "🌍", "❤️", "🐢"];
-  const emoji4b = ["🇱🇰", "🇫🇷", "🇨🇳", "🇳🇵", "🇰🇷", "🇺🇸", "🇧🇷", "🇵🇰", "🇮🇳", "🇵🇹"];
+  // shuffle the emoji array
+  const pair = shuffleArray(emojis);
 
-  // Making emoji pair
-  const emojis = [...emoji4b, ...emoji4b];
-
-  // Shuffle the emoji array twice with Fisher–Yates Shuffle algo.
-  const pair1 = shuffleArray(emojis);
-  const pairs = shuffleArray(pair1);
-  console.log(pairs);
+  return pairs;
   ```
