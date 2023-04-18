@@ -1,5 +1,5 @@
 # JavaScript-Games
-My small games developed in JavaScript utilizing some of the useful ECMAScript features.
+I have developed some small JavaScript games using some of the useful features of ECMAScript.
 ----
 ## Projects
 - MemoryGame
