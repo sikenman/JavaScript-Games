@@ -1,5 +1,5 @@
 # JavaScript-Games
-My small games developed in JavaScript utilizing ECMAScript features
+My small games developed in JavaScript utilizing some of the useful ECMAScript features.
 ----
 ## Projects
 - MemoryGame
@@ -18,6 +18,7 @@ My small games developed in JavaScript utilizing ECMAScript features
     - Random set of emojis are selected at runtime.
     - Multi level of game 3 × 4, 4 × 4, 4 × 5, 5 × 5.
       - Making use of 2D array to load the games.
+    - Changing CSS variables through JavaScript.
 
 ### Example CSS code used in MemoryGame
 ```css

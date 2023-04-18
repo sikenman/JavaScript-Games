@@ -49,7 +49,7 @@ function gameOver() {
   document.title = "🌍 Memory " + gameTitle;
   document.getElementById("game-level").innerHTML = "Memory " + gameTitle;
 
-  // we already have 16 divs for game of 4x4 in HTML page
+  // we already have 12 divs for game of 3x4 in HTML page
   // we dynamically generate div for game 4x5, 5x5 and beyond
   let parentDiv = document.querySelector(".grid-container");
 
