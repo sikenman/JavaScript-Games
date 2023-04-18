@@ -1,19 +1,74 @@
-import { getEmojis } from "./lib.js";
+import * as Game from "./const.js";
+import { getEmojis } from "./game.js";
 
-let globalTimer = null;
+let appTimer = null;
 let showAnimation = false;
 
+let gameLevel = Game.LVL3_4; /* Start the game at this level */
+
+function gameOver() {
+  // stop the timer
+  clearInterval(appTimer);
+
+  // show [You Won] modal dialog
+  document.getElementById("popup-dlg").classList.add("showme");
+}
+
+// game initialization section
 (function () {
-  console.log("Game begins!!");
+  console.log(gameLevel + " game begins!!");
 
   // disable right click
   document.addEventListener("contextmenu", (event) => {
     event.preventDefault();
   });
 
+  let gameTitle = null;
+  let [cols, rows, cardDivisor] = [4, 4, 5];
+
+  switch (gameLevel) {
+    case Game.LVL3_4:
+      gameTitle = "3 × 4 Game";
+      [cols, rows, cardDivisor] = [3, 4, 5];
+      break;
+    case Game.LVL4_4:
+      gameTitle = "4 × 4 Game";
+      [cols, rows, cardDivisor] = [4, 4, 5];
+      break;
+    case Game.LVL4_5:
+      gameTitle = "4 × 5 Game";
+      [cols, rows, cardDivisor] = [4, 5, 6.3];
+      break;
+    case Game.LVL5_5:
+      gameTitle = "5 × 5 Game";
+      [cols, rows, cardDivisor] = [5, 5, 6.3];
+      break;
+  }
+
+  // change the game title and heading (h1)
+  document.title = "🌍 Memory " + gameTitle;
+  document.getElementById("game-level").innerHTML = "Memory " + gameTitle;
+
+  // we already have 16 divs for game of 4x4 in HTML page
+  // we dynamically generate div for game 4x5, 5x5 and beyond
+  let parentDiv = document.querySelector(".grid-container");
+
+  for (let i = 12; i < rows * cols; i++) {
+    let newDiv = document.createElement("div");
+    newDiv.classList.add("grid-card");
+    newDiv.dataset.id = i;
+    parentDiv.appendChild(newDiv);
+  }
+
+  // changing CSS variables rows and cols
+  var r = document.querySelector(":root");
+  r.style.setProperty("--card-cols", cols);
+  r.style.setProperty("--card-rows", rows);
+  r.style.setProperty("--card-divisior", cardDivisor);
+
   // show animation during card click
   if (showAnimation === true) {
-    const gridItems = document.querySelectorAll(".grid-item");
+    const gridItems = document.querySelectorAll(".grid-card");
     gridItems.forEach((item) => {
       item.classList.add("show-animation");
     });
@@ -22,22 +77,20 @@ let showAnimation = false;
 
 (function () {
   /* 
-  This is the memory game code to play 5 x 4 game
+  This is main code for memory game (4x4, 4x5, 5x5 and more)
   @Author: Siken Man Dongol
-  @Date  : April 11-16, 2023
+  @Date  : April 11-17, 2023
   */
 
-  let count = 0;
-  let gameScore = 0;
-  let gameMoves = 0;
+  let [count, gameScore, gameMoves] = [0, 0, 0];
 
-  const pairs = getEmojis();
+  const pairs = getEmojis(gameLevel);
   console.log(pairs);
 
   let [firstClick, secondClick] = [null, null];
   let [firstEmoji, secondEmoji] = [null, null];
 
-  const gridItems = document.querySelectorAll(".grid-item");
+  const gridItems = document.querySelectorAll(".grid-card");
   gridItems.forEach((item) => {
     item.addEventListener("click", handleClick);
   });
@@ -48,13 +101,23 @@ let showAnimation = false;
     if (gameMoves % 2 == 0) {
       document.getElementById("moves").innerHTML = Number(gameMoves / 2);
     }
+    //console.info(count, gameScore, gameMoves);
 
     if (count === 0) {
       firstEmoji = pairs[this.dataset.id];
       e.target.textContent = firstEmoji;
       //----
       firstClick = this;
-      firstClick.classList.add("clicked");
+
+      /* GAME OVER for games with odd number of emojis */
+      if (gameScore == Number(Math.floor(pairs.length / 2))) {
+        firstClick.classList.add("clicked-last");
+        firstClick.removeEventListener("click", handleClick);
+
+        gameOver();
+      } else {
+        firstClick.classList.add("clicked");
+      }
       count++;
     } else if (count === 1) {
       secondEmoji = pairs[this.dataset.id];
@@ -77,13 +140,7 @@ let showAnimation = false;
         count = 0;
 
         /* GAME OVER */
-        if (gameScore == pairs.length / 2) {
-          // stop the timer
-          clearInterval(globalTimer);
-
-          // show [You Won] modal dialog
-          document.getElementById("popup-dlg").classList.add("showme");
-        }
+        if (gameScore == Number(pairs.length / 2)) gameOver();
       } else {
         setTimeout(() => {
           firstClick.textContent = "";
@@ -94,7 +151,7 @@ let showAnimation = false;
           firstClick = null;
           secondClick = null;
           count = 0;
-        }, 800);
+        }, 720);
         count++;
       }
     }
@@ -109,10 +166,9 @@ let showAnimation = false;
     @Author: Siken Man Dongol
     @Date  : April 12, 2023
 */
-  let seconds = 0;
-  let minutes = 0;
+  let [seconds, minutes] = [0, 0];
 
-  globalTimer = setInterval(() => {
+  appTimer = setInterval(() => {
     seconds++;
     if (seconds === 60) {
       minutes++;

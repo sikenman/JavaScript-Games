@@ -1,4 +1,7 @@
 :root {
+  --card-cols: 4;
+  --card-rows: 4;
+  --card-divisior: 6.3;
   --card-color: lightseagreen;
   --status-text-color1: rgb(22, 154, 147);
   --shadow-color: #999;
@@ -13,10 +16,11 @@ body {
   /* prevent text selection */
   -webkit-user-select: none; /* for Safari */
   user-select: none;
+  /* background-color: #22212c; // for dark mode */
 }
 
 h1 {
-  color: black;
+  color: #22212c;
   font-size: 3.8rem;
   line-height: 4rem;
   text-align: center;
@@ -29,8 +33,8 @@ h1 {
   margin-right: 24%;
 
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-columns: repeat(var(--card-cols), 1fr);
+  grid-template-rows: repeat(var(--card-rows), 1fr);
   gap: 0.5rem;
 }
 
@@ -53,13 +57,13 @@ h1 {
   }
 }
 
-.grid-item {
+.grid-card {
   background-color: #ddd;
   border: 2px solid #d9d9d9;
   border-radius: 12px;
   cursor: pointer;
-  font-size: 5rem;
-  height: calc(100vh / 6.3); /* need to adjust for 4 x 4 game */
+  font-size: 5.3rem;
+  height: calc(100vh / var(--card-divisior));
   min-height: 8rem;
   min-width: 8rem;
 
@@ -71,21 +75,28 @@ h1 {
 }
 
 /* Card flip animation */
-.grid-item.show-animation {
+.grid-card.show-animation {
   transition: transform 0.5s ease;
 }
 
-.grid-item.clicked {
+.grid-card.clicked {
   background-color: var(--card-color);
 }
-.grid-item.clicked.show-animation {
+.grid-card.clicked.show-animation {
   transform: rotateY(180deg);
 }
 
-.grid-item.matched {
+.grid-card.clicked-last {
+  background-color: lightslategray;
+}
+.grid-card.clicked-last.show-animation {
+  transform: rotateY(0deg);
+}
+
+.grid-card.matched {
   border: 2px solid var(--status-text-color1);
 }
-.grid-item.matched.show-animation {
+.grid-card.matched.show-animation {
   transform: rotateY(0deg);
 }
 
@@ -147,7 +158,7 @@ button {
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.65);
   transition: opacity 500ms;
   visibility: hidden;
   opacity: 0;
@@ -159,10 +170,10 @@ button {
 
 .popup {
   margin: 40vh auto;
-  padding: 20px;
+  padding: 16px;
   background: #fff;
-  border-radius: 1.8rem;
-  width: 30%;
+  border-radius: 1.5rem;
+  width: 36%;
   position: relative;
   transition: all 5s ease-in-out;
 }
@@ -171,14 +182,14 @@ button {
   margin-top: 0;
   color: #333;
   color: var(--status-text-color1);
-  font-size: 2rem;
+  font-size: 1.75rem;
 }
 .popup .close {
   position: absolute;
-  top: 20px;
-  right: 30px;
+  top: 12px;
+  right: 24px;
   transition: all 300ms;
-  font-size: 2.2rem;
+  font-size: 2rem;
   font-weight: bold;
   text-decoration: none;
   color: #333;
@@ -187,14 +198,14 @@ button {
   color: var(--card-color);
 }
 .popup .content {
-  font-size: 1.6rem;
-  line-height: 2.2rem;
-  max-height: 30%;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  max-height: 36%;
   text-align: center;
   overflow: auto;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 768px) {
   .box {
     width: 70%;
   }
