@@ -82,7 +82,7 @@ function getEmojis5x5() {
 
   const rndIndex = getRandom(3);
   const rndExtra = getRandom(3);
-  // making emoji pair (12+12 = 24), ane one extra
+  // making emoji pair (12+12 = 24), and one extra
   const emojis = [
     ...emoji55[rndIndex],
     emojiExtra[rndIndex][rndExtra],

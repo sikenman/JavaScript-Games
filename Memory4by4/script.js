@@ -4,7 +4,7 @@ import { getEmojis } from "./game.js";
 let appTimer = null;
 let showAnimation = false;
 
-let gameLevel = Game.LVL3_4; /* Start the game at this level */
+let gameLevel = Game.LVL4_4; /* Start the game at this level */
 
 function gameOver() {
   // stop the timer
@@ -50,7 +50,7 @@ function gameOver() {
   document.getElementById("game-level").innerHTML = "Memory " + gameTitle;
 
   // we already have 12 divs for game of 3x4 in HTML page
-  // we dynamically generate div for game 4x5, 5x5 and beyond
+  // we dynamically generate div for game 4x4, 4x5, 5x5 and beyond
   let parentDiv = document.querySelector(".grid-container");
 
   for (let i = 12; i < rows * cols; i++) {
@@ -60,7 +60,7 @@ function gameOver() {
     parentDiv.appendChild(newDiv);
   }
 
-  // changing CSS variables rows and cols
+  // changing the value of CSS variables
   var r = document.querySelector(":root");
   r.style.setProperty("--card-cols", cols);
   r.style.setProperty("--card-rows", rows);
@@ -109,7 +109,7 @@ function gameOver() {
       //----
       firstClick = this;
 
-      /* GAME OVER for games with odd number of emojis */
+      /* GAME OVER for 5x5 game, where there is one extra card */
       if (gameScore == Number(Math.floor(pairs.length / 2))) {
         firstClick.classList.add("clicked-last");
         firstClick.removeEventListener("click", handleClick);
@@ -139,7 +139,7 @@ function gameOver() {
         secondClick = null;
         count = 0;
 
-        /* GAME OVER */
+        /* GAME OVER for all other games */
         if (gameScore == Number(pairs.length / 2)) gameOver();
       } else {
         setTimeout(() => {
