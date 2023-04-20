@@ -1,11 +1,11 @@
 import * as Game from "./const.js";
-import { getEmojis } from "./game.js";
+import { getEmojis, setLevelColor } from "./game.js";
 
 /* Important parameters to start the game begins */
 let appTimer = null;
 let showAnimation = false;
 
-let gameLevel = Game.LVL6_5; /* Start the game at this level */
+let gameLevel = Game.LVL4_5; /* Start the game at this level */
 /* Important parameters ends */
 
 function gameOver() {
@@ -67,10 +67,13 @@ function gameOver() {
   }
 
   // changing the value of CSS variables
-  var r = document.querySelector(":root");
+  let r = document.querySelector(":root");
   r.style.setProperty("--card-cols", cols);
   r.style.setProperty("--card-rows", rows);
   r.style.setProperty("--card-divisior", cardDivisor);
+
+  // change card color when level changes
+  setLevelColor(gameLevel);
 
   // show animation during card click
   if (showAnimation === true) {

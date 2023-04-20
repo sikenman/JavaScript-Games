@@ -19,6 +19,7 @@ I have developed some small JavaScript games using some of the useful features o
     - Multi level of game 3 × 4, 4 × 4, 4 × 5, 5 × 5, 6 × 5.
       - Making use of a 2D array to load the games.
     - Changing CSS variables through JavaScript.
+    - Different color scheme for game levels.
 
 ### Example CSS code used in MemoryGame
 ```css
