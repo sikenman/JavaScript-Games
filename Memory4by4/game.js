@@ -18,6 +18,8 @@ export function getEmojis(level) {
       return getEmojis4x5();
     case Game.LVL5_5:
       return getEmojis5x5();
+    case Game.LVL6_5:
+      return getEmojis6x5();
   }
 }
 
@@ -92,3 +94,22 @@ function getEmojis5x5() {
   const pair = shuffleArray(emojis);
   return pair;
 }
+
+function getEmojis6x5() {
+  const emoji65 = [
+    ["🐶", "😎", "🐼", "🌻", "🌍", "👻", "🚀", "🤖", "🦊", "❤️", "👽", "🍁", "🏠", "🎵", "🕙"],
+    ["🇱🇰", "🇫🇷", "🇨🇳", "🇳🇵", "🇰🇷", "🇺🇸", "🇧🇷", "🇵🇰", "🇮🇳", "🇵🇹", "🇯🇵", "🇰🇪", "🇦🇫", "🇿🇼", "🇧🇹"],
+    ["😀", "😍", "😎", "🦊", "👍", "🤪", "👀", "🖐️", "😉", "🫤", "🐯", "💀", "👧", "💩", "🐵"],
+  ];
+
+  const rndIndex = getRandom(3);
+  // making emoji pair (15+15= 30)
+  const emojis = [
+    ...emoji65[rndIndex],
+    ...emoji65[rndIndex],
+  ];
+
+  const pair = shuffleArray(emojis);
+  return pair;
+}
+/* Note: Microsoft product does not supports flag emoji in their product like VS code, Edge etc */

@@ -29,8 +29,8 @@ h1 {
 
 .grid-container {
   margin-top: 0;
-  margin-left: 24%;
-  margin-right: 24%;
+  margin-left: 21%;
+  margin-right: 21%;
 
   display: grid;
   grid-template-columns: repeat(var(--card-cols), 1fr);
@@ -100,7 +100,7 @@ h1 {
   transform: rotateY(0deg);
 }
 
-div.status {
+footer.status {
   color: black;
   padding: 0.5rem;
   font-size: 2rem;
@@ -131,15 +131,16 @@ div.status {
 }
 
 /* Reload Buttons */
-button {
+button.game-restart {
   font-size: 1.4rem;
-}
-.anim-bg-gradient {
   width: 16rem;
-  height: 4rem;
-  padding: 0.4rem;
-  border-radius: 0.6em;
+  height: 3.6rem;
+  padding: 0.3rem;
+  border-radius: 0.5em;
   cursor: pointer;
+}
+
+.anim-bg-gradient {
   color: gold;
   background: linear-gradient(120deg, darkmagenta, crimson, orange);
   background-size: 200% 100%;

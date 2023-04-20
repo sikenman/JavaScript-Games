@@ -16,7 +16,7 @@ I have developed some small JavaScript games using some of the useful features o
       - [Fisher–Yates Shuffle](https://bost.ocks.org/mike/shuffle/)
     - Make use of export and import modules with two JS files.
     - Random sets of emojis are selected at runtime.
-    - Multi level of game 3 × 4, 4 × 4, 4 × 5, 5 × 5.
+    - Multi level of game 3 × 4, 4 × 4, 4 × 5, 5 × 5, 6 × 5.
       - Making use of a 2D array to load the games.
     - Changing CSS variables through JavaScript.
 

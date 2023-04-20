@@ -1,10 +1,12 @@
 import * as Game from "./const.js";
 import { getEmojis } from "./game.js";
 
+/* Important parameters to start the game begins */
 let appTimer = null;
 let showAnimation = false;
 
-let gameLevel = Game.LVL4_4; /* Start the game at this level */
+let gameLevel = Game.LVL6_5; /* Start the game at this level */
+/* Important parameters ends */
 
 function gameOver() {
   // stop the timer
@@ -43,6 +45,10 @@ function gameOver() {
       gameTitle = "5 × 5 Game";
       [cols, rows, cardDivisor] = [5, 5, 6.3];
       break;
+    case Game.LVL6_5:
+      gameTitle = "6 × 5 Game";
+      [cols, rows, cardDivisor] = [6, 5, 6.3];
+      break;
   }
 
   // change the game title and heading (h1)
@@ -50,7 +56,7 @@ function gameOver() {
   document.getElementById("game-level").innerHTML = "Memory " + gameTitle;
 
   // we already have 12 divs for game of 3x4 in HTML page
-  // we dynamically generate div for game 4x4, 4x5, 5x5 and beyond
+  // we dynamically generate div for game 4x4, 4x5, 5x5, 6x5 and beyond
   let parentDiv = document.querySelector(".grid-container");
 
   for (let i = 12; i < rows * cols; i++) {
@@ -77,7 +83,7 @@ function gameOver() {
 
 (function () {
   /* 
-  This is main code for memory game (4x4, 4x5, 5x5 and more)
+  This is main code for memory game (3x4, 4x4, 4x5, 5x5 and more)
   @Author: Siken Man Dongol
   @Date  : April 11-17, 2023
   */

@@ -25,7 +25,7 @@
 
 <body>
     <h1 id="game-level">Game</h1>
-    <div class="grid-container">
+    <section class="grid-container">
         <div class="grid-card" data-id="0"></div>
         <div class="grid-card" data-id="1"></div>
         <div class="grid-card" data-id="2"></div>
@@ -38,17 +38,17 @@
         <div class="grid-card" data-id="9"></div>
         <div class="grid-card" data-id="10"></div>
         <div class="grid-card" data-id="11"></div>
-    </div>
+    </section>
 
     <!-- Game Status Section » begins -->
-    <div class="status">
+    <footer class="status">
         <div id="status-block">
             Matched: <span id="match">0</span> Moves: <span id="moves">0</span> Time: <span id="timer">0:00</span>
         </div>
         <div id="restart-block">
-            <button class="anim-bg-gradient" onclick="restartGame();">Restart Game</button>
+            <button class="game-restart anim-bg-gradient" onclick="restartGame();">Restart Game</button>
         </div>
-    </div>
+    </footer>
     <!-- Game Status Section » ends -->
 
     <!-- Game Over modal dialog box » begins -->
